@@ -26,7 +26,7 @@ document.querySelector('.check').addEventListener('click', function () {
   //console.log(document.querySelector('.guess').value);
   if (guessNumber < 0 || guessNumber > 20) {
     document.querySelector('.message').textContent =
-      'Enter between the fucking range';
+      'Enter between the range';
     return;
   }
   if (score <= 0) {
