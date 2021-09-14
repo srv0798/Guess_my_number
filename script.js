@@ -12,11 +12,12 @@ document.querySelector('.between').textContent = 'Between 0 and 20';
 
 const targetNumber = randomIntFromInterval(1, 19); */
 
-const targetNumber = Math.round(Math.random() * 20, 0);
+let targetNumber = Math.round(Math.random() * 20, 0);
 console.log(targetNumber);
 //document.querySelector('.number').textContent = targetNumber;
-let score = 2;
-document.querySelector('.score').textContent = 2;
+let score = 20;
+let highScore = 0;
+//document.querySelector('.score').textContent = 20;
 
 document.querySelector('.check').addEventListener('click', function () {
   let guessNumber_1 = document.querySelector('.guess').value;
@@ -41,6 +42,12 @@ document.querySelector('.check').addEventListener('click', function () {
     document.querySelector('.message').textContent = 'You win';
     document.querySelector('body').style.backgroundColor = '#228B22';
     document.querySelector('.number').textContent = targetNumber;
+
+    if (score > highScore) {
+      highScore = score;
+      document.querySelector('.highscore').textContent = highScore;
+      console.log(score, highScore);
+    }
   } else if (guessNumber > targetNumber) {
     document.querySelector('.message').textContent = 'Guess too high';
     score--;
@@ -58,6 +65,11 @@ document.querySelector('.check').addEventListener('click', function () {
   }
 });
 
-document
-  .querySelector('.again')
-  .addEventListener('click', () => location.reload());
+document.querySelector('.again').addEventListener('click', function () {
+  score = 20;
+  targetNumber = Math.round(Math.random() * 20, 0);
+  document.querySelector('.message').textContent = 'Start guessing...';
+  document.querySelector('.guess').value = '';
+  document.querySelector('body').style.backgroundColor = '#222';
+  document.querySelector('.score').textContent = score;
+});
